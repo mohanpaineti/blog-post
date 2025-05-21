@@ -1,0 +1,235 @@
+/* Container styles for the admin dashboard */
+.container {
+  max-width: 700px;
+}
+
+/* Glass card styles for a modern, translucent look */
+.glass-card {
+  background: rgba(36, 40, 73, 0.7);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(80, 63, 205, 0.22), 0 1.5px 8px #6c47ff44;
+  backdrop-filter: blur(16px);
+  color: #f3f4fa;
+  border: 3px solid transparent;
+  position: relative;
+}
+
+/* Gradient border effect for glass card */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 3px;
+  background: linear-gradient(120deg, #6c47ff, #3e8cff, #ff41f8, #6c47ff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  transition: box-shadow 0.3s;
+}
+
+/* Section title styles */
+.section-title {
+  color: #ff41f8;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 8px #3e8cff33;
+}
+
+/* Primary button styles */
+.btn-primary {
+  background: linear-gradient(90deg, #ff41f8 0%, #3e8cff 100%);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #ff41f844;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Hover effect for primary button */
+.btn-primary:hover {
+  background: linear-gradient(90deg, #3e8cff 0%, #ff41f8 100%);
+  box-shadow: 0 4px 16px #3e8cff55;
+}
+
+/* Form control styles */
+.form-control, textarea.form-control {
+  background: rgba(36, 40, 73, 0.85);
+  color: #f3f4fa;
+  border: 1.5px solid #3e8cff44;
+  border-radius: 8px;
+  box-shadow: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus effect for form controls */
+.form-control:focus, textarea.form-control:focus {
+  background: rgba(36, 40, 73, 0.95);
+  color: #fff;
+  border-color: #ff41f8;
+  box-shadow: 0 0 0 2px #ff41f855;
+}
+
+/* Form label styles */
+.form-label {
+  color: #b7b8ff;
+  font-weight: 500;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  th {
+    background: rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    color: #00ff88;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  td {
+    color: #e0e0e0;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  tr:hover td {
+    background: rgba(0, 255, 136, 0.05);
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+      }
+
+      &.edit {
+        background: rgba(0, 255, 136, 0.1);
+        color: #00ff88;
+        border-color: rgba(0, 255, 136, 0.3);
+
+        &:hover {
+          background: rgba(0, 255, 136, 0.2);
+        }
+      }
+
+      &.delete {
+        background: rgba(255, 0, 0, 0.1);
+        color: #ff4444;
+        border-color: rgba(255, 0, 0, 0.3);
+
+        &:hover {
+          background: rgba(255, 0, 0, 0.2);
+        }
+      }
+    }
+  }
+}
+
+/* Analytics card styles */
+.analytics-card {
+  background: rgba(36, 40, 73, 0.85);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #3e8cff44;
+}
+
+/* Analytics value styles */
+.analytics-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ff41f8;
+  text-shadow: 0 2px 8px #3e8cff33;
+}
+
+/* Analytics label styles */
+.analytics-label {
+  color: #b7b8ff;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Image preview styles */
+.image-preview {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: 2px solid #3e8cff44;
+}
+
+/* File input styles */
+.file-input {
+  display: none;
+}
+
+/* File input label styles */
+.file-input-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(108, 71, 255, 0.2);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.file-input-label:hover {
+  background: rgba(108, 71, 255, 0.3);
+}
+
+/* Message styles */
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Success message styles */
+.message-success {
+  background: rgba(46, 213, 115, 0.2);
+  border: 1px solid #2ed57344;
+  color: #2ed573;
+}
+
+/* Error message styles */
+.message-error {
+  background: rgba(255, 71, 87, 0.2);
+  border: 1px solid #ff475744;
+  color: #ff4757;
+} 

@@ -1,0 +1,52 @@
+.container {
+  max-width: 400px;
+}
+
+.glass-card {
+  background: rgba(36, 40, 73, 0.7);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(80, 63, 205, 0.22), 0 1.5px 8px #6c47ff44;
+  backdrop-filter: blur(16px);
+  color: #f3f4fa;
+  border: 3px solid transparent;
+  position: relative;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  padding: 3px;
+  background: linear-gradient(120deg, #6c47ff, #3e8cff, #ff41f8, #6c47ff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  transition: box-shadow 0.3s;
+}
+
+.section-title {
+  color: #ff41f8;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 8px #3e8cff33;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ff41f8 0%, #3e8cff 100%);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #ff41f844;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #3e8cff 0%, #ff41f8 100%);
+  box-shadow: 0 4px 16px #3e8cff55;
+} 

@@ -1,0 +1,52 @@
+/* Navigation bar container styles */
+.navbar {
+  background: rgba(24, 28, 47, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(108, 71, 255, 0.2);
+}
+
+/* Logo styles */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #6c47ff;
+  }
+}
+
+/* Navigation link styles */
+.nav-link {
+  color: #b7b8ff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: #fff;
+    background: rgba(108, 71, 255, 0.2);
+  }
+  
+  &.active {
+    color: #fff;
+    background: rgba(108, 71, 255, 0.3);
+  }
+}
+
+/* Logout button styles */
+.btn-logout {
+  background: rgba(255, 71, 87, 0.2);
+  color: #ff4757;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 71, 87, 0.3);
+    color: #ff4757;
+  }
+}

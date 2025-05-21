@@ -1,0 +1,109 @@
+.blog-post {
+  position: relative;
+  background: linear-gradient(135deg, #23243a 60%, #2d225a 100%);
+  border-radius: 28px;
+  box-shadow: 0 12px 48px 0 #3e8cff44, 0 2px 8px #ff41f844;
+  backdrop-filter: blur(18px);
+  color: #f3f4fa;
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+  transition: box-shadow 0.3s, border-radius 0.2s;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.blog-post::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 3px;
+  background: linear-gradient(120deg, #6c47ff, #3e8cff, #ff41f8, #6c47ff);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+  transition: box-shadow 0.3s;
+}
+
+.blog-post:hover {
+  box-shadow: 0 16px 56px 0 #ff41f888, 0 4px 16px #3e8cff99;
+}
+
+.blog-post:hover::before {
+  filter: brightness(1.2) blur(0.5px);
+}
+
+.blog-post h1 {
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 12px #3e8cff33;
+}
+
+.text-muted {
+  color: #b7b8ff !important;
+}
+
+.img-fluid.rounded {
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #6c47ff33;
+  object-fit: cover;
+  max-height: 340px;
+  width: 100%;
+}
+
+.position-absolute.p-4 {
+  background: linear-gradient(transparent, #181c2f 90%) !important;
+  border-radius: 0 0 18px 18px;
+}
+
+.lead.text-white, .blog-content .lead {
+  color: #ff41f8 !important;
+  font-weight: 600;
+  text-shadow: 0 2px 8px #3e8cff33;
+}
+
+.blog-content {
+  color: #f3f4fa;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+.blog-text {
+  color: #b7b8ff;
+  font-size: 1.08rem;
+  margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-lg {
+  background: linear-gradient(90deg, #ff41f8 0%, #3e8cff 100%);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #ff41f844;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover, .btn-lg:hover {
+  background: linear-gradient(90deg, #3e8cff 0%, #ff41f8 100%);
+  box-shadow: 0 4px 16px #3e8cff55;
+}
+
+.breadcrumb {
+  background: transparent;
+  color: #b7b8ff;
+  font-weight: 500;
+}
+
+.breadcrumb-item a {
+  color: #3e8cff;
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: #ff41f8;
+}

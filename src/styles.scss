@@ -1,1 +1,281 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles for the application */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+//@import 'sass:math';
+
+/* Animated background gradient effect */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background: radial-gradient(circle at 20% 30%, #6c47ff33 0%, transparent 60%),
+              radial-gradient(circle at 80% 70%, #3e8cff33 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Moving particles background effect */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-radial-gradient(circle at 10% 20%, #6c47ff22 0 2px, transparent 3px 100px),
+              repeating-radial-gradient(circle at 80% 80%, #3e8cff22 0 2px, transparent 3px 100px);
+}
+
+/* Animation keyframes for gradient movement */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Animation keyframes for shine effect */
+@keyframes shine {
+  from {
+    opacity: 0.1;
+  }
+  to {
+    opacity: 0.3;
+  }
+}
+
+/* Base body styles */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(135deg, #181c2f 0%, #2d225a 100%);
+  min-height: 100vh;
+  margin: 0;
+  color: #f3f4fa;
+}
+
+/* Blog post card styles */
+.blog-post {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* Card component styles */
+.card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover .card-img-top {
+    transform: scale(1.05);
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    color: #2c3e50;
+    font-weight: 600;
+  }
+  
+  .card-text {
+    color: #34495e;
+  }
+}
+
+/* Navigation bar styles */
+.navbar {
+  background: rgba(24, 28, 47, 0.95) !important;
+  box-shadow: 0 4px 24px 0 rgba(80, 63, 205, 0.12);
+  border-radius: 0 0 16px 16px;
+}
+
+/* Logo styles */
+.logo svg {
+  filter: drop-shadow(0 0 8px #6c47ff88);
+  transition: transform 0.2s;
+}
+
+.logo:hover svg {
+  transform: scale(1.1) rotate(-6deg);
+}
+
+/* Breadcrumb styles */
+.breadcrumb {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Search container styles */
+.search-container {
+  position: relative;
+  margin-bottom: 3rem;
+  
+  .form-control {
+    border-radius: 25px;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    
+    &:focus {
+      border-color: #3498db;
+      box-shadow: 0 2px 15px rgba(52, 152, 219, 0.1);
+    }
+  }
+}
+
+/* Section title styles */
+.section-title {
+  color: #b7b8ff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+/* Animation keyframes for fade in effect */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Glass effect styles */
+.glass-card {
+  background: rgba(36, 40, 73, 0.7);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(80, 63, 205, 0.18);
+  border: 1px solid rgba(108, 71, 255, 0.18);
+  backdrop-filter: blur(12px);
+  color: #f3f4fa;
+}
+
+/* Button styles */
+.glass-button, .btn-primary {
+  background: linear-gradient(90deg, #6c47ff 0%, #3e8cff 100%);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #6c47ff44;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.glass-button:hover, .btn-primary:hover {
+  background: linear-gradient(90deg, #3e8cff 0%, #6c47ff 100%);
+  box-shadow: 0 4px 16px #3e8cff55;
+}
+
+/* Alert styles */
+.glass-alert {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #2c3e50;
+}
+
+/* Enhanced section title styles */
+.section-title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  
+  &:after {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  }
+}
+
+/* Search input styles */
+.search-input {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 4px 16px rgba(52, 152, 219, 0.2);
+    border-color: rgba(52, 152, 219, 0.5);
+  }
+}
+
+/* Link styles */
+a, .nav-link {
+  color: #b7b8ff !important;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #fff !important;
+  background: #6c47ff33;
+  border-radius: 8px;
+}
+
+/* Main content area styles */
+.main-content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Footer styles */
+.footer {
+  background: rgba(36, 40, 73, 0.8) !important;
+  color: #b7b8ff;
+  border-top: 1px solid #6c47ff44;
+  border-radius: 16px 16px 0 0;
+}
+
+/* Card text styles */
+.card-title, .card-text, .text-muted {
+  color: #f3f4fa !important;
+}
+
+/* Info alert styles */
+.alert-info {
+  background: rgba(62, 140, 255, 0.15);
+  color: #b7b8ff;
+  border: 1px solid #3e8cff44;
+}

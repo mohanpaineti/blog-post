@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="logo d-flex align-items-center text-decoration-none" routerLink="/">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#2563eb"/>
+        <path d="M10 11C10 10.4477 10.4477 10 11 10H22C22.5523 10 23 10.4477 23 11V22C23 22.5523 22.5523 23 22 23H11C10.4477 23 10 22.5523 10 22V11Z" stroke="white" stroke-width="2"/>
+        <path d="M13 13H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13 16H20" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M13 19H18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="ms-2 fw-bold fs-5" style="color: #fff; letter-spacing: 1px;">Angular Blog</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse flex-grow-0" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

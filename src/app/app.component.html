@@ -177,7 +177,10 @@
   }
 </style>
 
-<main class="main">
+<div class="animated-background"></div>
+<div class="particles"></div>
+
+<main class="main-content position-relative" style="z-index: 1; min-height: 80vh;">
   <div class="content">
     <div class="left-side">
       <svg
@@ -324,6 +327,12 @@
   </div>
 </main>
 
+<footer class="footer glass-card text-center py-4 mt-5" style="backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); border-radius: 16px 16px 0 0;">
+  <div class="container">
+    <span class="fw-bold" style="color: #2563eb;">My Blog</span> &copy; {{ currentYear || (currentYear = (new Date()).getFullYear()) }} &mdash; Crafted with <span style="color: #e25555;">&#10084;</span>
+  </div>
+</footer>
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
@@ -331,6 +340,5 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />

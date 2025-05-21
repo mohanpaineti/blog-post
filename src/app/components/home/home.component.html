@@ -1,0 +1,65 @@
+<div class="container mt-4 fade-in">
+  <!-- Search Bar -->
+  <div class="row mb-4">
+    <div class="col-md-6 mx-auto search-container">
+      <div class="input-group">
+        <input type="text" 
+               class="form-control search-input" 
+               placeholder="Search posts..." 
+               [(ngModel)]="searchTerm"
+               style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9);">
+      </div>
+    </div>
+  </div>
+
+  <!-- Last Viewed Posts -->
+  <div class="row mb-5" *ngIf="lastViewedPosts.length > 0">
+    <div class="col">
+      <h2 class="section-title text-white">Recently Viewed</h2>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let post of lastViewedPosts.slice(0, 3); let i = index">
+          <div class="card mb-3 glass-card" [style.animation-delay]="i * 0.1 + 's'">
+            <img [src]="post.imageUrl" class="card-img-top" [alt]="post.title">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.summary}}</p>
+              <p class="card-text text-truncate" style="max-height: 4.5em; overflow: hidden;">{{post.content | slice:0:180}}{{post.content.length > 180 ? '...' : ''}}</p>
+              <a [routerLink]="['/post', post.id]" class="btn btn-primary glass-button">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- All Posts -->
+  <div class="row">
+    <div class="col">
+      <h2 class="section-title text-white">All Posts</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let post of filteredPosts; let i = index">
+          <div class="card h-100 glass-card" [style.animation-delay]="i * 0.1 + 's'">
+            <img [src]="post.imageUrl" class="card-img-top" [alt]="post.title">
+            <div class="card-body">
+              <h5 class="card-title">{{post.title}}</h5>
+              <p class="card-text">{{post.summary}}</p>
+              <p class="card-text text-truncate" style="max-height: 4.5em; overflow: hidden;">{{post.content | slice:0:180}}{{post.content.length > 180 ? '...' : ''}}</p>
+              <p class="card-text"><small class="text-muted">{{post.date | date:'mediumDate'}}</small></p>
+              <a [routerLink]="['/post', post.id]" class="btn btn-primary glass-button">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Posts Found Message -->
+  <div class="row" *ngIf="filteredPosts.length === 0">
+    <div class="col text-center">
+      <div class="alert alert-info glass-alert fade-in">
+        <i class="fas fa-search me-2"></i>
+        No posts found matching your search.
+      </div>
+    </div>
+  </div>
+</div>

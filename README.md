@@ -1,16 +1,60 @@
-# BlogApp
+# Angular Blog Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+A static blog web application built with Angular, featuring a responsive design and modern user experience.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Responsive landing page with blog post listings
+- Detailed post view with full content
+- Search functionality to filter posts
+- Last viewed posts tracking
+- Bootstrap styling with animations
+- Modular component architecture
 
-```bash
-ng serve
-```
+## Prerequisites
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js (LTS version recommended)
+- Angular CLI (`npm install -g @angular/cli`)
+
+## Installation
+
+1. Clone the repository
+2. Navigate to the project directory:
+   ```bash
+   cd blog-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+## Development Server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Project Structure
+
+- `src/app/components/` - Application components
+  - `home/` - Landing page component
+  - `navigation/` - Navigation bar component
+  - `post-detail/` - Post detail view component
+- `src/app/models/` - TypeScript interfaces
+- `src/app/services/` - Application services
+- `src/styles.scss` - Global styles
+
+## Technical Implementation
+
+- Built with Angular 17
+- Uses standalone components
+- Implements routing for navigation
+- Uses services for data management
+- Implements localStorage for last viewed posts
+- Bootstrap for responsive design
+- SCSS for custom styling
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Code scaffolding
 
@@ -25,16 +69,6 @@ For a complete list of available schematics (such as `components`, `directives`,
 ```bash
 ng generate --help
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
 ## Running unit tests
 
