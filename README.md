@@ -1,93 +1,132 @@
-# Angular Blog Application
+# Modern Blog Application
 
-A static blog web application built with Angular, featuring a responsive design and modern user experience.
+A beautiful, modern blog application built with Angular, featuring a dark theme with glassmorphism effects, admin dashboard, and image upload capabilities.
 
 ## Features
 
-- Responsive landing page with blog post listings
-- Detailed post view with full content
-- Search functionality to filter posts
-- Last viewed posts tracking
-- Bootstrap styling with animations
-- Modular component architecture
+- 🎨 Modern UI with glassmorphism effects and neon accents
+- 📱 Responsive design for all devices
+- 🔒 Secure admin dashboard with authentication
+- 📝 Blog post management (Create, Read, Update, Delete)
+- 🖼️ Image upload with preview
+- 🌙 Dark theme optimized for reading
 
 ## Prerequisites
 
-- Node.js (LTS version recommended)
-- Angular CLI (`npm install -g @angular/cli`)
+Before you begin, ensure you have the following installed:
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- Angular CLI (v15 or higher)
 
 ## Installation
 
-1. Clone the repository
-2. Navigate to the project directory:
-   ```bash
-   cd blog-app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd blog-app
+```
 
-## Development Server
+2. Install dependencies:
+```bash
+npm install
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Running the Application
+
+1. Start the development server:
+```bash
+ng serve
+```
+
+2. Open your browser and navigate to:
+```
+http://localhost:4200
+```
+
+## Admin Dashboard Access
+
+1. Navigate to the login page:
+```
+http://localhost:4200/login
+```
+
+2. Use the following credentials:
+- Username: `admin`
+- Password: `admin`
+
+3. After successful login, you'll be redirected to the admin dashboard at:
+```
+http://localhost:4200/admin
+```
+
+## Admin Dashboard Features
+
+- Add new blog posts with title, content, and images
+- Edit existing blog posts
+- Delete blog posts
+- Preview images before publishing
+- View all posts in a table format
 
 ## Project Structure
 
-- `src/app/components/` - Application components
-  - `home/` - Landing page component
-  - `navigation/` - Navigation bar component
-  - `post-detail/` - Post detail view component
-- `src/app/models/` - TypeScript interfaces
-- `src/app/services/` - Application services
-- `src/styles.scss` - Global styles
-
-## Technical Implementation
-
-- Built with Angular 17
-- Uses standalone components
-- Implements routing for navigation
-- Uses services for data management
-- Implements localStorage for last viewed posts
-- Bootstrap for responsive design
-- SCSS for custom styling
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── admin-dashboard/
+│   │   ├── blog-post/
+│   │   ├── blog-list/
+│   │   ├── header/
+│   │   └── login/
+│   ├── services/
+│   │   ├── auth.service.ts
+│   │   └── blog.service.ts
+│   ├── guards/
+│   │   └── auth.guard.ts
+│   └── models/
+│       └── blog-post.model.ts
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Development
+
+### Building for Production
 
 ```bash
-ng generate --help
+ng build --prod
 ```
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Running Tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Code Linting
 
 ```bash
-ng e2e
+ng lint
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Technologies Used
 
-## Additional Resources
+- Angular 15
+- TypeScript
+- SCSS
+- RxJS
+- Angular Material (for some components)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support, please open an issue in the GitHub repository or contact the maintainers.
