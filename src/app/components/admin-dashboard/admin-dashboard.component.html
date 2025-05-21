@@ -8,22 +8,28 @@
     </div>
     <!-- Analytics Section -->
     <div class="row mb-4">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="glass-card p-3 text-center">
           <h3 class="section-title mb-0">{{ analytics.totalPosts }}</h3>
           <p class="mb-0">Total Posts</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="glass-card p-3 text-center">
           <h3 class="section-title mb-0">{{ analytics.totalViews }}</h3>
           <p class="mb-0">Total Views</p>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <div class="glass-card p-3 text-center">
           <h3 class="section-title mb-0">{{ analytics.averageRating | number:'1.1-1' }}</h3>
           <p class="mb-0">Average Rating</p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="glass-card p-3 text-center">
+          <h3 class="section-title mb-0">{{ getTotalRatings() }}</h3>
+          <p class="mb-0">Total Ratings</p>
         </div>
       </div>
     </div>
@@ -74,13 +80,31 @@
           <tr>
             <th>Title</th>
             <th>Date</th>
+            <th>Ratings</th>
+            <th>Avg Rating</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let post of posts">
             <td>{{ post.title }}</td>
-            <td>{{ post.date }}</td>
+            <td>{{ post.date | date:'mediumDate' }}</td>
+            <td>
+              <span *ngIf="post.ratings && post.ratings.length > 0">
+                {{ post.ratings.length }} ratings
+              </span>
+              <span *ngIf="!post.ratings || post.ratings.length === 0" class="text-muted">
+                No ratings
+              </span>
+            </td>
+            <td>
+              <span *ngIf="post.ratings && post.ratings.length > 0">
+                {{ getPostAverageRating(post) | number:'1.1-1' }}
+              </span>
+              <span *ngIf="!post.ratings || post.ratings.length === 0" class="text-muted">
+                -
+              </span>
+            </td>
             <td>
               <button class="btn btn-sm btn-primary me-2" (click)="editPost(post)">Edit</button>
               <button class="btn btn-sm btn-danger" (click)="deletePost(post.id)">Delete</button>

@@ -1,19 +1,49 @@
-# Modern Blog Application
+# Angular Blog Application
 
-A beautiful, modern blog application built with Angular, featuring a dark theme with glassmorphism effects, admin dashboard, and image upload capabilities.
+A modern, responsive blog application built with Angular that allows users to read, create, edit, and manage blog posts with features like ratings, analytics, and user tracking.
 
 ## Features
 
-- 🎨 Modern UI with glassmorphism effects and neon accents
-- 📱 Responsive design for all devices
-- 🔒 Secure admin dashboard with authentication
-- 📝 Blog post management (Create, Read, Update, Delete)
-- 🖼️ Image upload with preview
-- 🌙 Dark theme optimized for reading
+### User Features
+- **Blog Post Browsing**
+  - View all blog posts in a responsive grid layout
+  - Read detailed blog posts with rich content
+  - View post creation dates and ratings
+  - Recently viewed posts tracking
+
+- **Post Interaction**
+  - Rate posts (1-5 stars)
+  - View average ratings for each post
+  - Responsive design for all devices
+
+### Admin Features
+- **Dashboard**
+  - View analytics including total posts, views, and ratings
+  - Monitor average ratings across all posts
+  - Track total number of ratings
+
+- **Post Management**
+  - Create new blog posts with title, summary, content, and image
+  - Edit existing posts
+  - Delete posts
+  - View post statistics
+
+### Technical Features
+- **Data Persistence**
+  - Local storage for blog posts
+  - Persistent ratings
+  - Recently viewed posts tracking
+  - Automatic data saving
+
+- **Responsive Design**
+  - Mobile-first approach
+  - Bootstrap integration
+  - Responsive navigation
+  - Adaptive layouts
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
+Before running this application, make sure you have the following installed:
 - Node.js (v14 or higher)
 - npm (v6 or higher)
 - Angular CLI (v15 or higher)
@@ -31,41 +61,15 @@ cd blog-post
 npm install
 ```
 
-## Running the Application
-
-1. Start the development server:
+3. Start the development server:
 ```bash
 ng serve
 ```
 
-2. Open your browser and navigate to:
+4. Open your browser and navigate to:
 ```
 http://localhost:4200
 ```
-
-## Admin Dashboard Access
-
-1. Navigate to the login page:
-```
-http://localhost:4200/login
-```
-
-2. Use the following credentials:
-- Username: `admin`
-- Password: `admin`
-
-3. After successful login, you'll be redirected to the admin dashboard at:
-```
-http://localhost:4200/admin
-```
-
-## Admin Dashboard Features
-
-- Add new blog posts with title, content, and images
-- Edit existing blog posts
-- Delete blog posts
-- Preview images before publishing
-- View all posts in a table format
 
 ## Project Structure
 
@@ -74,46 +78,45 @@ src/
 ├── app/
 │   ├── components/
 │   │   ├── admin-dashboard/
-│   │   ├── blog-post/
 │   │   ├── blog-list/
-│   │   ├── header/
-│   │   └── login/
+│   │   ├── post-detail/
+│   │   ├── post-form/
+│   │   └── shared/
+│   ├── models/
 │   ├── services/
-│   │   ├── auth.service.ts
-│   │   └── blog.service.ts
-│   ├── guards/
-│   │   └── auth.guard.ts
-│   └── models/
-│       └── blog-post.model.ts
+│   └── app-routing.module.ts
+├── assets/
+└── styles/
 ```
 
-## Development
+## Key Components
 
-### Building for Production
-
-```bash
-ng build --prod
-```
-
-### Running Tests
-
-```bash
-ng test
-```
-
-### Code Linting
-
-```bash
-ng lint
-```
+- **BlogListComponent**: Displays all blog posts in a grid layout
+- **PostDetailComponent**: Shows detailed view of a single blog post
+- **PostFormComponent**: Handles creation and editing of blog posts
+- **AdminDashboardComponent**: Provides analytics and post management
+- **BlogService**: Manages blog post data and localStorage persistence
 
 ## Technologies Used
 
 - Angular 15
 - TypeScript
-- SCSS
+- Bootstrap 5
 - RxJS
-- Angular Material (for some components)
+- Angular Material Icons
+- LocalStorage API
+
+## Development
+
+### Running Tests
+```bash
+ng test
+```
+
+### Building for Production
+```bash
+ng build --prod
+```
 
 ## Contributing
 
@@ -127,6 +130,8 @@ ng lint
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Support
+## Acknowledgments
 
-For support, please open an issue in the GitHub repository or contact the maintainers.
+- Angular Team for the amazing framework
+- Bootstrap Team for the responsive design framework
+- Unsplash for the beautiful images used in the blog posts

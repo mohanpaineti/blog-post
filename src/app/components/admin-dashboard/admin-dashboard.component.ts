@@ -65,9 +65,19 @@ export class AdminDashboardComponent implements OnInit {
     // Calculate analytics based on the posts data
     this.analytics.totalPosts = this.posts.length;
     this.analytics.totalViews = this.posts.reduce((sum, post) => sum + (post.views || 0), 0);
-    this.analytics.averageRating = this.posts.length > 0
-      ? this.posts.reduce((sum, post) => sum + (post.rating || 0), 0) / this.posts.length
-      : 0;
+    
+    // Calculate average rating from all ratings arrays
+    let totalRatings = 0;
+    let sumOfRatings = 0;
+
+    this.posts.forEach(post => {
+      if (post.ratings && Array.isArray(post.ratings) && post.ratings.length > 0) {
+        totalRatings += post.ratings.length;
+        sumOfRatings += post.ratings.reduce((sum, rating) => sum + (rating || 0), 0);
+      }
+    });
+
+    this.analytics.averageRating = totalRatings > 0 ? sumOfRatings / totalRatings : 0;
   }
 
   addPost() {
@@ -168,5 +178,19 @@ export class AdminDashboardComponent implements OnInit {
     // Log out the user and redirect to login page
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  getTotalRatings(): number {
+    return this.posts.reduce((total, post) => {
+      return total + (post.ratings && Array.isArray(post.ratings) ? post.ratings.length : 0);
+    }, 0);
+  }
+
+  getPostAverageRating(post: BlogPost): number {
+    if (!post.ratings || !Array.isArray(post.ratings) || post.ratings.length === 0) {
+      return 0;
+    }
+    const sum = post.ratings.reduce((total, rating) => total + (rating || 0), 0);
+    return sum / post.ratings.length;
   }
 } 

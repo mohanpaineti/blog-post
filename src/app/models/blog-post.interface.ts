@@ -17,6 +17,8 @@ export interface BlogPost {
   date: Date;
   // Optional number of views for the post
   views?: number;
-  // Optional rating of the post (e.g., 1-5 stars)
+  // Array of ratings for the post
+  ratings?: number[];
+  // Current user's rating
   rating?: number;
 } 

@@ -6,13 +6,45 @@ import { BlogPost } from '../models/blog-post.interface';
   providedIn: 'root'
 })
 export class BlogService {
-  // Array to store all blog posts
-  private posts: BlogPost[] = [
-    {
-      id: 1,
-      title: 'Getting Started with Angular',
-      summary: 'Learn the basics of Angular framework and how to create your first application.',
-      content: `Angular is a platform and framework for building single-page client applications using HTML and TypeScript. This comprehensive guide will walk you through setting up your development environment, understanding the core concepts, and building your first Angular application.
+  private readonly POSTS_STORAGE_KEY = 'blog_posts';
+  private readonly LAST_VIEWED_KEY = 'lastViewedPosts';
+  
+  // Initialize posts from localStorage or use default posts
+  private posts: BlogPost[] = this.loadPostsFromStorage();
+  private postsSubject = new BehaviorSubject<BlogPost[]>(this.posts);
+
+  constructor() {
+    // Initialize posts if localStorage is empty
+    if (!localStorage.getItem(this.POSTS_STORAGE_KEY)) {
+      this.initializeDefaultPosts();
+    }
+  }
+
+  private loadPostsFromStorage(): BlogPost[] {
+    const storedPosts = localStorage.getItem(this.POSTS_STORAGE_KEY);
+    if (storedPosts) {
+      const posts = JSON.parse(storedPosts);
+      // Convert date strings back to Date objects
+      return posts.map((post: any) => ({
+        ...post,
+        date: new Date(post.date),
+        ratings: post.ratings || []
+      }));
+    }
+    return [];
+  }
+
+  private savePostsToStorage(posts: BlogPost[]): void {
+    localStorage.setItem(this.POSTS_STORAGE_KEY, JSON.stringify(posts));
+  }
+
+  private initializeDefaultPosts(): void {
+    const defaultPosts: BlogPost[] = [
+      {
+        id: 1,
+        title: 'Getting Started with Angular',
+        summary: 'Learn the basics of Angular framework and how to create your first application.',
+        content: `Angular is a platform and framework for building single-page client applications using HTML and TypeScript. This comprehensive guide will walk you through setting up your development environment, understanding the core concepts, and building your first Angular application.
 
 Angular provides a robust set of tools and libraries for building modern web applications. It uses TypeScript, a superset of JavaScript, which allows for strong typing and object-oriented programming. The Angular CLI (Command Line Interface) makes it easy to scaffold, build, and maintain your projects.
 
@@ -31,14 +63,15 @@ Forms in Angular can be built using either template-driven or reactive approache
 Testing is a first-class citizen in Angular. The framework includes tools for unit testing components, services, and other parts of your application. You can use Jasmine and Karma for unit tests, and Protractor for end-to-end testing.
 
 In summary, Angular is a comprehensive framework that provides everything you need to build modern, scalable, and maintainable web applications. By following best practices and leveraging Angular's features, you can create high-quality applications that deliver great user experiences.`,
-      imageUrl: 'https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-15')
-    },
-    {
-      id: 2,
-      title: 'Understanding TypeScript',
-      summary: 'Deep dive into TypeScript features and best practices.',
-      content: `TypeScript is a strongly typed programming language that builds on JavaScript. Learn about interfaces, types, decorators, and how TypeScript enhances your development experience with better tooling and error detection.
+        imageUrl: 'https://images.unsplash.com/photo-1593720219276-0b1eacd0aef4?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-15'),
+        ratings: []
+      },
+      {
+        id: 2,
+        title: 'Understanding TypeScript',
+        summary: 'Deep dive into TypeScript features and best practices.',
+        content: `TypeScript is a strongly typed programming language that builds on JavaScript. Learn about interfaces, types, decorators, and how TypeScript enhances your development experience with better tooling and error detection.
 
 TypeScript was developed by Microsoft to address the challenges of large-scale JavaScript development. It introduces static typing, which helps catch errors at compile time rather than at runtime. This leads to more robust and maintainable code, especially in large projects.
 
@@ -53,14 +86,15 @@ TypeScript integrates seamlessly with popular editors like Visual Studio Code, p
 Migrating from JavaScript to TypeScript is straightforward. You can gradually add type annotations to your existing codebase and take advantage of TypeScript's features incrementally. Many popular libraries and frameworks, including Angular, React, and Vue, have excellent TypeScript support.
 
 In conclusion, TypeScript is a valuable tool for modern web development. Its static typing, advanced features, and strong tooling make it an excellent choice for building scalable and maintainable applications. By adopting TypeScript, you can improve code quality, catch errors early, and enhance your overall development workflow.`,
-      imageUrl: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-14')
-    },
-    {
-      id: 3,
-      title: 'Mastering Angular Components',
-      summary: 'Everything you need to know about Angular components and their lifecycle.',
-      content: `Components are the fundamental building blocks of Angular applications. This post covers component creation, lifecycle hooks, input/output properties, and best practices for component architecture.
+        imageUrl: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-14'),
+        ratings: []
+      },
+      {
+        id: 3,
+        title: 'Mastering Angular Components',
+        summary: 'Everything you need to know about Angular components and their lifecycle.',
+        content: `Components are the fundamental building blocks of Angular applications. This post covers component creation, lifecycle hooks, input/output properties, and best practices for component architecture.
 
 In Angular, a component is a self-contained unit of the user interface. Each component consists of a template, a class, and optional styles. The template defines the view, the class contains the logic, and the styles control the appearance.
 
@@ -73,14 +107,15 @@ Angular encourages the use of modular architecture. You can organize components 
 Testing is an important aspect of component development. Angular provides tools for unit testing components, including TestBed and Jasmine. By writing tests for your components, you can ensure they behave as expected and catch regressions early.
 
 In summary, mastering Angular components is key to building robust and maintainable applications. By understanding component communication, lifecycle hooks, and best practices, you can create high-quality UIs that are easy to test and extend.`,
-      imageUrl: 'https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-13')
-    },
-    {
-      id: 4,
-      title: 'Angular Services and Dependency Injection',
-      summary: 'Learn how to create and use services effectively in Angular.',
-      content: `Services in Angular provide a way to organize and share business logic, data, and functions across components. Understand dependency injection and how it makes your application more maintainable and testable.
+        imageUrl: 'https://images.unsplash.com/photo-1517134191118-9d595e4c8c2b?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-13'),
+        ratings: []
+      },
+      {
+        id: 4,
+        title: 'Angular Services and Dependency Injection',
+        summary: 'Learn how to create and use services effectively in Angular.',
+        content: `Services in Angular provide a way to organize and share business logic, data, and functions across components. Understand dependency injection and how it makes your application more maintainable and testable.
 
 A service is a class that encapsulates reusable logic, such as data retrieval, business rules, or utility functions. By creating services, you can keep your components focused on the user interface and delegate non-UI logic to services.
 
@@ -93,14 +128,15 @@ Services can be provided at different levels, such as root, module, or component
 Testing services is straightforward in Angular. You can use the TestBed utility to create a testing module and inject the service. By writing unit tests for your services, you can ensure they work correctly and handle edge cases.
 
 In conclusion, services and dependency injection are core concepts in Angular. By leveraging these features, you can build modular, maintainable, and testable applications.`,
-      imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-12')
-    },
-    {
-      id: 5,
-      title: 'Responsive Design with Bootstrap',
-      summary: 'Create beautiful responsive layouts using Bootstrap with Angular.',
-      content: `Bootstrap is a powerful CSS framework that makes responsive design easy. Learn how to integrate Bootstrap with Angular and create mobile-friendly layouts that look great on any device.
+        imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-12'),
+        ratings: []
+      },
+      {
+        id: 5,
+        title: 'Responsive Design with Bootstrap',
+        summary: 'Create beautiful responsive layouts using Bootstrap with Angular.',
+        content: `Bootstrap is a powerful CSS framework that makes responsive design easy. Learn how to integrate Bootstrap with Angular and create mobile-friendly layouts that look great on any device.
 
 Bootstrap provides a grid system, prebuilt components, and utility classes that help you build responsive layouts quickly. The grid system uses rows and columns to arrange content, making it easy to create flexible and adaptive designs.
 
@@ -113,14 +149,15 @@ Customizing Bootstrap is easy. You can override default styles using your own CS
 Accessibility is an important aspect of responsive design. Bootstrap includes features that help make your application accessible to all users, including those with disabilities. By following best practices, you can ensure your application is usable by everyone.
 
 In summary, Bootstrap and Angular are a powerful combination for building responsive, accessible, and visually appealing web applications. By leveraging Bootstrap's features, you can create layouts that adapt to any device and provide a great user experience.`,
-      imageUrl: 'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-11')
-    },
-    {
-      id: 6,
-      title: 'Angular Routing in Depth',
-      summary: 'Master Angular routing for better navigation in your applications.',
-      content: `Routing is essential for creating multi-page applications with Angular. This guide covers route configuration, parameters, guards, and advanced routing techniques.
+        imageUrl: 'https://images.unsplash.com/photo-1517292987719-0369a794ec0f?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-11'),
+        ratings: []
+      },
+      {
+        id: 6,
+        title: 'Angular Routing in Depth',
+        summary: 'Master Angular routing for better navigation in your applications.',
+        content: `Routing is essential for creating multi-page applications with Angular. This guide covers route configuration, parameters, guards, and advanced routing techniques.
 
 The Angular Router enables navigation between different views or pages in your application. You can define routes in your app's routing module, specifying the path and component for each route. Route parameters allow you to pass data between routes, such as IDs or query strings.
 
@@ -131,58 +168,73 @@ Lazy loading is a technique that loads feature modules only when needed. This im
 The router also supports nested routes, redirects, and custom route matching. You can use router outlets to display different components based on the current route. Navigation events allow you to track route changes and perform actions in response.
 
 In conclusion, mastering Angular routing is key to building scalable and maintainable applications. By understanding route configuration, guards, and lazy loading, you can create powerful navigation experiences for your users.`,
-      imageUrl: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=800&auto=format&fit=crop&q=80',
-      date: new Date('2024-03-10')
-    }
-  ];
+        imageUrl: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=800&auto=format&fit=crop&q=80',
+        date: new Date('2024-03-10'),
+        ratings: []
+      }
+    ];
+    this.posts = defaultPosts;
+    this.savePostsToStorage(this.posts);
+    this.postsSubject.next(this.posts);
+  }
 
-  // BehaviorSubject to manage the posts data reactively
-  private postsSubject = new BehaviorSubject<BlogPost[]>(this.posts);
-
-  constructor() { }
-
-  // Get all posts as an Observable
   getAllPosts(): Observable<BlogPost[]> {
     return this.postsSubject.asObservable();
   }
 
-  // Get a post by its ID
   getPostById(id: number): Observable<BlogPost | undefined> {
     return of(this.posts.find(post => post.id === id));
   }
 
-  // Save the last viewed post to localStorage
   saveLastViewedPost(post: BlogPost): void {
-    const lastViewed = JSON.parse(localStorage.getItem('lastViewedPosts') || '[]');
+    const lastViewed = JSON.parse(localStorage.getItem(this.LAST_VIEWED_KEY) || '[]');
     const updatedLastViewed = [post, ...lastViewed.filter((p: BlogPost) => p.id !== post.id)].slice(0, 3);
-    localStorage.setItem('lastViewedPosts', JSON.stringify(updatedLastViewed));
+    localStorage.setItem(this.LAST_VIEWED_KEY, JSON.stringify(updatedLastViewed));
   }
 
-  // Get the last viewed posts from localStorage
   getLastViewedPosts(): BlogPost[] {
-    return JSON.parse(localStorage.getItem('lastViewedPosts') || '[]');
+    const posts = JSON.parse(localStorage.getItem(this.LAST_VIEWED_KEY) || '[]');
+    return posts.map((post: any) => ({
+      ...post,
+      date: new Date(post.date),
+      ratings: post.ratings || []
+    }));
   }
 
-  // Add a new post and return the updated posts array
   addPost(post: BlogPost): Observable<BlogPost[]> {
-    this.posts.push(post);
+    const newId = Math.max(...this.posts.map(p => p.id), 0) + 1;
+    const newPost = { 
+      ...post, 
+      id: newId,
+      ratings: [],
+      date: new Date(post.date)
+    };
+    this.posts.push(newPost);
+    this.savePostsToStorage(this.posts);
     this.postsSubject.next(this.posts);
     return of(this.posts);
   }
 
-  // Edit an existing post and return the updated posts array
   editPost(post: BlogPost): Observable<BlogPost[]> {
     const index = this.posts.findIndex(p => p.id === post.id);
     if (index !== -1) {
-      this.posts[index] = post;
+      // Preserve existing ratings if not provided in the update
+      const existingPost = this.posts[index];
+      const updatedPost = {
+        ...post,
+        ratings: post.ratings || existingPost.ratings || [],
+        date: new Date(post.date)
+      };
+      this.posts[index] = updatedPost;
+      this.savePostsToStorage(this.posts);
       this.postsSubject.next(this.posts);
     }
     return of(this.posts);
   }
 
-  // Delete a post and return the updated posts array
   deletePost(id: number): Observable<BlogPost[]> {
     this.posts = this.posts.filter(post => post.id !== id);
+    this.savePostsToStorage(this.posts);
     this.postsSubject.next(this.posts);
     return of(this.posts);
   }
